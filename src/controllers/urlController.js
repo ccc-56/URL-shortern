@@ -32,7 +32,7 @@ export const shortenUrl = async (req, res) => {
   
       console.log('Short URL saved');
       //res.json({ shortUrl: `http://localhost:3000/${code}` });
-      res.json({ shortUrl: `http://${req.get('host')}/${code}` });
+      res.json({ shortUrl: `http://${req.get('host')}/r/${code}` });
     } catch (err) {
       console.error('Error in shortenUrl:', err);
       res.status(500).json({ error: 'Internal Server Error' });
