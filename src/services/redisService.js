@@ -1,14 +1,26 @@
 import { createClient } from 'redis';
 
-const redisUrl = process.env.REDIS_URL || `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`;
+const redisUrl = process.env.REDIS_URL || `rediss://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`;
+console.log('redisUrl');
+console.log(redisUrl);
+console.log('process.env.REDIS_HOST');
+console.log(process.env.REDIS_HOST);
 
 export const client = createClient({ url: redisUrl });
 
 client.on('connect', () => {
+  console.log('redisUrl');
+  console.log(redisUrl);
+  console.log('process.env.REDIS_HOST');
+  console.log(process.env.REDIS_HOST);
   console.log('✅ Connected to Redis');
 });
 
 client.on('error', (err) => {
+   console.log('redisUrl');
+   console.log(redisUrl);
+   console.log('process.env.REDIS_HOST');
+   console.log(process.env.REDIS_HOST);
   console.error('❌ Redis error:', err);
 });
 

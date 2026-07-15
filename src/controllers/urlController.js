@@ -16,7 +16,8 @@ const isValidUrl = (url) => {
 export const shortenUrl = async (req, res) => {
     try {
       console.log('Received request:', req.body);
-      const { originalUrl } = req.body;
+      //const { originalUrl } = req.body;
+      const originalUrl = req.body.originalUrl || req.body.url;
   
       if (typeof originalUrl !== 'string') {
         return res.status(400).json({ error: 'Invalid input: originalUrl must be a string' });
@@ -30,7 +31,8 @@ export const shortenUrl = async (req, res) => {
       await saveUrl(code, originalUrl);
   
       console.log('Short URL saved');
-      res.json({ shortUrl: `http://localhost:3000/${code}` });
+      //res.json({ shortUrl: `http://localhost:3000/${code}` });
+      res.json({ shortUrl: `http://${req.get('host')}/${code}` });
     } catch (err) {
       console.error('Error in shortenUrl:', err);
       res.status(500).json({ error: 'Internal Server Error' });
