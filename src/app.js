@@ -9,6 +9,7 @@ import { redirectUrl } from './controllers/urlController.js';
 
 
 const app = express();
+app.set('trust proxy', true);
 app.use(express.json());
 // app.use(express.static(path.resolve('public')));
 app.use('/api', urlRoutes);

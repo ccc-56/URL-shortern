@@ -29,10 +29,16 @@ export const shortenUrl = async (req, res) => {
   
       const code = await generateShortCode(); // make sure generateShortCode is async
       await saveUrl(code, originalUrl);
-  
+
+      const protocol = req.protocol;
       console.log('Short URL saved');
+      //for debug
+      console.log(req.protocol);
+      console.log(req.get("host"));
+      console.log(req.headers);
       //res.json({ shortUrl: `http://localhost:3000/${code}` });
-      res.json({ shortUrl: `http://${req.get('host')}/r/${code}` });
+      //res.json({ shortUrl: `http://${req.get('host')}/r/${code}` });
+      res.json({ shortUrl: `${protocol}://${req.get('host')}/r/${code}` });
     } catch (err) {
       console.error('Error in shortenUrl:', err);
       res.status(500).json({ error: 'Internal Server Error' });
