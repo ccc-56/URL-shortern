@@ -28,7 +28,7 @@ await client.connect();
 
 export const saveUrl = async (code, url) => {
   await client.set(code, JSON.stringify({ originalUrl: url }), {
-    EX: 3600,
+    EX: 259200,
   });
 };
 
